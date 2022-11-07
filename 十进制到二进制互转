@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+/*
+程序要求：
+*/
+long long DectoBin(int Dec)
+{
+    long long count = 1;
+    long long sum = 0;
+    char mod = 0;
+    while (Dec)
+    {
+        mod = Dec % 2;
+        Dec /= 2;
+        sum += mod * count;
+        count *= 10;
+    }
+    return sum;
+}
+
+int BintoDec(long long Bin)
+{
+    int Dec = 0;
+    int count = 0;
+    while (Bin)
+    {
+        Dec += (Bin & 1) * pow(2, count);
+        Bin /= 10;
+        count++;
+    }
+    return Dec;
+}
+
+int main(void)
+{
+    long long number;
+    scanf("%I64d", &number);
+
+    printf("Dec:%d\n", BintoDec(number));
+    printf("Bin:%I64d\n", DectoBin(number));
+}
