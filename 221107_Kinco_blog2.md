@@ -32,7 +32,7 @@ gcc(linux i386),g++(linux i386)只支持%lld的输出方式。
 输入 float用%f，double用%lf,输出都是用%f
 
 进制转换：
-[Decimal to binary]((https://github.com/Mayday646/Kinco_Devel_Blog/blob/main/Blog2_Decimal%20to%20Binary%20conversion))
+[Decimal to binary](https://github.com/Mayday646/Kinco_Devel_Blog/blob/main/Blog2_Decimal%20to%20Binary%20conversion)
 
 #上次内容
 
