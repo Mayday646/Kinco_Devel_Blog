@@ -1,4 +1,4 @@
-#一周总结：
+# 一周总结：
 来公司的第四个月，写的第二篇blog，之前在qq写了一篇。
 总结一下吧，有两周没写了:
 1. 上次的学习内容，C++ 还是没有开始学习，对于C 的基础 学习还是要 继续加深一下，所以打算 重新看一下浙大的 公开课，目前进度应该有30%,之后再进行深入的c++学习，主要是配置 *VSCODE* 的debug 调试环境；
@@ -6,7 +6,7 @@
 3. 以后就用github 写blog，所以要学习一下Markdown 的语法，马上开始吧，似乎比较简单吧。。。。
 4. 工作内容中有没有比较重要的回顾呢:
 
-##(一) 
+## (一) 
 
 %I64x和%lld两种都是C语言中格式化输出64位整型的正确做法。
 
@@ -17,11 +17,11 @@ gcc(linux i386),g++(linux i386)只支持%lld的输出方式。
 
 另外，mac上的gcc／g++不支持%I64d的方式。
 
-##（二）
+## （二）
 
 输出64位数的十六进制可以用 %llx，也可以用%I64x,I64表示64位int值（I32表示32位int值，i必须大写）, x表示十六进制形式显示,小写的x表示16进制的字母以小写的形式输出（a,b,c,d,e,f）,大写的X表示十六进制的字母以大写的形式输出（A,B,C,D,E,F）
 
-##（三）
+## （三）
 
 在printf中%d用于int或者比int小的整数类型。比int小的类型被转型成int。
 
@@ -32,7 +32,7 @@ gcc(linux i386),g++(linux i386)只支持%lld的输出方式。
 输入 float用%f，double用%lf,输出都是用%f
 
 进制转换：
-[Decimal to binary]((https://github.com/Mayday646/Kinco_Devel_Blog/blob/main/Blog2_Decimal%20to%20Binary%20conversion))
+[Decimal to binary](https://github.com/Mayday646/Kinco_Devel_Blog/blob/main/Blog2_Decimal%20to%20Binary%20conversion)
 
 #上次内容
 
