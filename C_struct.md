@@ -56,7 +56,7 @@ struct example *pDate = &today;
     struct example_2 {
         struct example Px1;
         struct example Py1;
-    }r , *rp;
+    }r, *rp;
 
     rp = &r;
     !!! r.Px1.x, r.Px1.y; <==> rp->Px1.x <==> (*rp).Px1.x;
@@ -106,6 +106,7 @@ int main(void)
 |内存地址|0x4000|0x4001|
 |:----:|:----:|:----:|
 |数据|0x34|0x12|
+   
 大端模式：
 |内存地址|0x4000|0x4001|
 |:----:|:----:|:----:|
