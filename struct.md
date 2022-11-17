@@ -56,7 +56,7 @@ struct example *pDate = &today;
     struct example_2 {
         struct example Px1;
         struct example Py1;
-    }r , *rp;
+    }r, *rp;
 
     rp = &r;
     !!! r.Px1.x, r.Px1.y; <==> rp->Px1.x <==> (*rp).Px1.x;
