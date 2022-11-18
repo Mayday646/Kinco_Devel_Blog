@@ -17,7 +17,7 @@
     printf ("%9.2f\n", 123.0)   //“9”:整个输出占9位“.2”小数点后两位
 ```
 
-![type](type.png)
+![type](https://github.com/Mayday646/Kinco_Devel_Blog/blob/8962dfabd5d943389eb56b36e45807f0dc59955d/Default%20Picture%20Dir/type.png#pic_left=30x)
 
 ---
 
