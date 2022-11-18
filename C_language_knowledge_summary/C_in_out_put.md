@@ -1,4 +1,4 @@
-#### c标准输入输出
+### C标准输入输出
 + `printf`
     + `%[flags][width][.prec][hlL]type`
   
