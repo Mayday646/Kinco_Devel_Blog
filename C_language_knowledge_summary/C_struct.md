@@ -113,6 +113,8 @@ int main(void)
 |数据|0x12|0x34|
 </font>
 
++ 大部分操作系统(windows、linux)都是小端模式，少部分,如MAC OS是大端模式。
+
 ---
 
 #### 代码部分：
