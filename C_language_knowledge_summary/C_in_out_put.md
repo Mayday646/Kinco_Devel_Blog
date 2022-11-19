@@ -124,20 +124,23 @@
 + 二进制文件的读写一般是通过对一个结构变量操作进行
 + `nitems`是说明这次读写几个结构变量
 
-```c
-#define LEN 20
-typedef struct {
+#### 在文件中定位
++ `long ftell(FILE *stream)`
++ `int fseek(FILE *stream, long offset, int whence)`
+    + `int whence` : 
+        + `SEEK_SET`:   从头开始
+        + `SEEK_CUR`:   从当前位置
+        + `SEEK_END`    从末尾开始
 
-    char name[LEN];
-    int gender;
-    int age;
 
-}Student;
+ ***<font color =green> TEST CODE</font>*** : [<u>size_t</u>](https://github.com/Mayday646/Kinco_Devel_Blog/tree/main/C_CODE/size_t)
 
-```
+---
 
+***<div align =right>Date: 2022/11/20/01:14</div>***
 
 <!-- 
+
 - ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `#f03c15`
 - ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) `#c5f015`
 - ![#1589F0](https://via.placeholder.com/15/1520F0/000000?text=+) `#1589F0`
@@ -154,3 +157,5 @@ typedef struct {
 ```
 
 -->
+
+ 
