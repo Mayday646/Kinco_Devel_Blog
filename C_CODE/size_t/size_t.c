@@ -12,25 +12,26 @@
 typedef struct {
 
     char name[LEN];
-    int gender;
-    int age;
+    unsigned int gender;
+    unsigned int age;
 
 }Student;
 
 void GetList(Student aStu[], int number)
 {
-    char format[LEN];
-    sprintf(format, "%%%ds", LEN - 1);
+    // char format[LEN];
+    // sprintf(format, "%%%ds", LEN - 1);
     //"%19s"
-
+    // 这种写法 写入会多一个 "\0"
     for(int i = 0; i < number; i++)
     {
-        printf("%dth student\n\t姓名: ", i + 1);
-        scanf(format, &aStu[i].name);
-        printf("\t性别: ");
-        scanf(format, &aStu[i].gender);
-        printf("\t年龄: ");
-        scanf(format, &aStu[i].age);
+        printf("%dth student\n\tName: ", i + 1);
+        scanf("%7s", aStu[i].name); //%7s: 限定输入长度 LEN - 1 ?
+        printf("\tGender: ");
+        scanf("%d", &aStu[i].gender);
+        printf("\tAge: ");
+        scanf("%d", &aStu[i].age);
+        getchar();
     }
 }
 int Fsave(Student aStu[], int number)
@@ -45,13 +46,42 @@ int Fsave(Student aStu[], int number)
     return ret == number;
 }
 
-int Fseek(void)
+void Fread(FILE *fp, int index)
+{
+    fseek(fp, index * sizeof(Student), SEEK_SET); // (*fp)走到 结构首地址 也是首成员地址 x index
+    Student Stu;
+    //? Student *Stu; //定义指针变量
+    if(fread(&Stu, sizeof(Student), 1, fp) == 1)
+    {
+        printf("%dth student\n\tName: %s\n", index + 1, Stu.name);
+        printf("\tGender: ");
+        switch (Stu.gender)
+        {
+            case 1: 
+                printf("Male\n");
+                break;
+            case 2: 
+                printf("Female\n");
+                break;
+            case 3:
+                printf("Other\n");
+                break;
+            default:
+                printf("Unknown %d\n", Stu.gender);
+                break;
+        }
+        printf("\tAge: %d\n",Stu.age);
+    } 
+}
+
+void Fseek(void)
 {
     FILE *fp = fopen("student.date", "r");
     if(fp)
     {
-        fseek(fp, 0L, SEEK_END);
-        int number = ftell(fp)/sizeof(Student);
+        fseek(fp, 0L, SEEK_END); // (*fp) 指向文件数据末尾
+        long file_size = ftell(fp);   // 得到文件总大小
+        int number = file_size / sizeof(Student); // 文件总大小 / 每个结构体大小 得到 结构体数量
         printf("There has %d Dates ,which one do you want to seek?\n", number);
         int index;
         scanf("%d", &index);
@@ -60,27 +90,18 @@ int Fseek(void)
     }
 }
 
-void Fread(FILE *fp, int index)
-{
-    fseek(fp, index*sizeof(Student), SEEK_SET);
-    Student *stu;
-    if(fread(&stu, sizeof(Student), 1 , fp) == 1)
-    {
-        
-    } 
-}
-
 int main(void)
 {
-    int number;
-    printf("input student number:\n");
-    scanf("%d", &number);
-    Student aStu[number];
-    GetList(aStu, number);
+    // int number;
+    // printf("input student number:\n");
+    // scanf("%d", &number);
+    // Student aStu[number];
+    // GetList(aStu, number);
 
-    if(save(aStu, number))
-        printf("Save successful");
-    else
-        printf("Save failed");
+    // if(Fsave(aStu, number))
+    //     printf("Write successful\n");
+    // else
+    //     printf("Write failed\n");
+    Fseek();
     return 0;
 }
