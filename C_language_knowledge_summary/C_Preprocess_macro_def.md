@@ -82,4 +82,4 @@ int a = 1;           //定义变量a 并且赋值为 1
 + `int i `变量定义
 + `extern int i` 变量声明(不能初始化)
 ---
-**<div align =right>Date:2022/11/16</div>**
+***<div align =right>Date:2022/11/16</div>***
