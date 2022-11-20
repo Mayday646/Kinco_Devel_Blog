@@ -64,10 +64,11 @@ struct example *pDate = &today;
 ```
 ### 自定义数据类型 typedef:
 ```c
+typedef unsigned int u_int32; // 要加 ';'
 typedef struct ~~example~~ 
  {
-    int x;
-    int y;
+    u_int32 x;
+    u_int32 y;
 }Data; //! Data d <==> struct example d
 typedef char*[10] String;  //String是 十个 字符 的数组
 ```
