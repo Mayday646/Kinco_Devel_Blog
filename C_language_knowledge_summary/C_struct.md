@@ -43,7 +43,56 @@ struct example *pDate = &today;
 ---
 ### 结构体指针
 + 首先用定义好的结构体，定义一个结构体变量，用结构体变量来为结构体指针初始化
-+        始终理解结构体是一种特殊的数据类型，根据数据类型，可以定义变量、指针和数组。
+  + 始终理解结构体是一种特殊的数据类型，根据数据类型，可以定义变量、指针和数组。
+
+```c
+struct student  //定义了一个结构体
+{
+    long stuid; 
+    char name[10];
+    int age;
+    int score;
+    student birthday;
+}stu1;   //定义了一个结构体变量
+
+    struct student stu2;  //因为结构体含有名字，所以可以继续定义结构体变量stu2
+    struct student *stu3;   //定义了一个结构体指针
+
+    stu3=&stu1; //同指针一样，结构体指针指向结构体变量
+
+        /*可替换为     
+    1）struct student *stu3=&stu1; //定义的同时初始化
+    2）struct student *stu3;
+    *stu3=stu1;
+    */
+    struct student stu4[10];  //定义了一个结构体数组
+```
++ 如何用指针访问结构体变量的成员？
+
+```c
+//方法一：
+//同结构体变量一样，通过成员选择运算符
+ 
+    stu1.age=18;
+    (*stu3).age=19;   //通过对stu3的解引用  
+
+    //方法二：
+    //通过指向运算符来访问，例如：
+
+    stu3 -> age =19;
+ 
+```
++ 构体嵌套的访问
+
+```c
+    //级联访问
+
+    stu1.birthday.year = 1998;
+    (*stu3).birthday.year =1998;
+    stu3 -> birthday . year =1998;
+
+    //三种方式。
+```
 ### 结构体数组
 ```c
  struct example  arr[] = {
@@ -60,11 +109,51 @@ struct example *pDate = &today;
     struct example_2 {
         struct example Px1;
         struct example Py1;
-    }r , *rp;
+    }r, *rp;
 
     rp = &r;
     !!! r.Px1.x, r.Px1.y; <==> rp->Px1.x <==> (*rp).Px1.x;
         r.Py1.x, r.Py1.y;
+```
+### 结构体数组的指针
++ 如何定义一个结构体数组的指针
+
+```c
+#include <stdio.h>
+ 
+int main()
+{
+	typedef struct information  //定义了一个结构体
+	{
+		long stuid; 
+		char name[10];
+		int age;
+		int score;
+	}info;   //别名
+	
+	info stu[40]; //定义了一个结构体数组
+	info *pt;   //定义了结构体指针
+	pt = stu;   //指针初始化方法一
+ 
+    info *pt1 = &stu[0]; //初始化方法二
+ 
+    info *pt2 = stu;   //方法三
+}
+```
++ 如何访问结构体数组的指针
+
+```c
+    info stu[40];   //info为结构体标签的别名
+    info *pt;
+    pt = stu;
+
+    stu[0].stuid =  1001;
+    (*pt).stuid = 1001 ;
+    pt -> stuid =1001; //三条语句等价
+	
+    stu[1].stuid =1002 ; 
+    (pt++) -> stuid =1002; 
+    (*pt++).stuid = 1002 ;  //语句等价
 ```
 ### 自定义数据类型 typedef:
 ```c
@@ -76,7 +165,9 @@ typedef struct ~~example~~
 }Data; //! Data d <==> struct example d
 typedef char*[10] String;  //String是 十个 字符 的数组
 ```
+
 - - -
+
 ### 联合体 :union
 ```c
 typedef union {
@@ -122,132 +213,9 @@ int main(void)
 
 ---
 
-#### 代码部分：
+***TEST CODE:*** []()
 
-```c
-struct point {
-    int x;
-    int y;
-};
 
-struct point *getStruct(struct point *p)
-{
-    p->x = 4;
-    p->y = 5;
-    printf("get: %i %i\n", p->x, p->y);
-    return p;
-}
 
-void output(struct point p)
-{
-    printf("out: %i %i\n", p.x, p.y);
-}
-
-void print(const struct point *p)
-{
-    printf("pri: %i %i\n", p->x, p->y);
-}
-
-int main(void)
-{
-    struct point y = {0, 0};
-    output(y);
-    getStruct(&y);
-    output(y); 
-    output(*getStruct(&y));
-    print(getStruct(&y));
-    *getStruct(&y) = (struct point){7, 8};
-    printf("main: %i %i\n", y.x, y.y); // 赋值运算最后做;
-    printf("%s",__func__);  // __func__当前函数名称
-    
-}
-// 结构体的 引用 变量初始化 //Date: 2022/05/02 
-/*
-int main(void)
-{
-    struct date
-    {
-        int  years, month, day;
-    };
-    struct stu
-    {
-        int num, age;
-        char  *name, sex;
-        float score;
-        struct date bir;
-    } stu1,stu2={102, 16 ,"erqi",'F',89,1999,2,14}; //赋值 可传递赋值(date)；
-#if 0
-    stu1.birthday.day=13;
-    stu1.num=27;
-    stu1.name="erqi";
-    scanf("%c%f",&stu1.sex,&stu1.score);
-  #endif // 0
-        stu1=stu2;
-        printf("\tNO:%d\n\tName:%s\n",stu2.num,stu2.name);
-        printf("\tSex:%c\n\tScore:%2.1f\n",stu2.sex,stu2.score);
-        printf("\tBirdate:%d-%d-%d\n",stu2.bir.years,stu2.bir.month,stu2.bir.day);
-}
-*****************/
-//定义结构体数组
-/************
-int main(void)
-{
-    struct date
-    {
-        int  years, month, day;
-    };
-
-    struct stu
-    {
-        int num, age;
-        char  *name, sex;
-        float score;
-        struct date bir;
-    } stus[2]={
-                {12, 16 ,"erqi",'M',89,1999,2,14},
-                {11, 17,"jiusan",'F',98,2000,4,12}
-                };
-                        //数组多变量赋值 可传递赋值(date)；
-    for(int i=0; i<2; i++)
-    {
-        printf("\t-----------------------------------------\n");
-        printf("\tNO:%d\n\tName:%s\n",stus[i].num,stus[i].name);
-        printf("\tSex:%c\n\tScore:%2.1f\n",stus[i].sex,stus[i].score);
-        printf("\tBirdate:%d-%d-%d\n",stus[i].bir.years,stus[i].bir.month,stus[i].bir.day);
-        printf("\t-----------------------------------------\n");
-    }
-}
-*************/
-//指向结构体变量的指针
-/***************
-int main(void)
-{
-    struct stu
-    {
-        int num;
-        char *name, sex;
-        float score;
-    }stus={1,"didi",'M',78};
-    struct stu *p;
-    p=&stus;
-    // p=&stu;// X
-
-    printf("\t-----------------------------------------\n");
-    printf("\tNO:%d\n\tName:%s\n",stus.num,stus.name);
-    printf("\tSex:%c\n\tScore:%2.1f\n",stus.sex,stus.score);
-    printf("\t-----------------------------------------\n");
-
-    printf("\t-----------------------------------------\n");
-    printf("\tNO:%d\n\tName:%s\n",(*p).num,(*p).name);
-    printf("\tSex:%c\n\tScore:%2.1f\n",(*p).sex,(*p).score);
-    printf("\t-----------------------------------------\n");
-    // (*p) .  成员列表
-    printf("\t-----------------------------------------\n");
-    printf("\tNO:%d\n\tName:%s\n",p->num,p->name);
-    printf("\tSex:%c\n\tScore:%2.1f\n",p->sex,p->score);
-    printf("\t-----------------------------------------\n");
-    // p -> 成员列表
-}
-*/
-```
-***<div align =right>Date:2022/11/14</div>***
+***<div align =right>Date:2022/11/14***
+***UpDate:2022/11/20/23:44</div>***
