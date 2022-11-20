@@ -213,7 +213,8 @@ int main(void)
 
 ---
 
-***TEST CODE:*** []()
+***TEST CODE:***   
+[<u>struct.c</u>](https://github.com/Mayday646/Kinco_Devel_Blog/blob/main/C_CODE/struct.c)
 
 
 
