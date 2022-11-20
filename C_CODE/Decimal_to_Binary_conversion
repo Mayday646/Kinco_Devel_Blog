@@ -6,6 +6,21 @@
 /*
 程序要求：
 */
+void DectoBin_2(int number)
+{
+    unsigned int mask = 1u << 16; //31
+    int cnt = 0;
+    while (mask >>= 1)
+    {
+        printf("%d", number & mask? 1 : 0);
+        cnt ++;
+        if (!(cnt % 4))
+        {
+            putchar(' ');
+        }
+    }
+}
+
 long long DectoBin(int Dec)
 {
     long long count = 1;
