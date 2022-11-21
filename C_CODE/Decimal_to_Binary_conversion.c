@@ -3,9 +3,7 @@
 #include <string.h>
 #include <math.h>
 
-/*
-程序要求：
-*/
+
 void DectoBin_2(int number)
 {
     unsigned int mask = 1u << 16; //31
