@@ -53,15 +53,18 @@ int *array_at(Array *array, int index) //查看某个数组元素
 int main(void)
 {
     Array a = array_create(ARRAY_SIZE);
-    printf("%d", array_size(&a));
+    printf("%d\n", array_size(&a));
     //printf("%d", a.size);         //两者的区别?
    
-    *array_at(&a, 0) = 10;          //可如此法赋值
-    printf("%d", array_at(&a, 0));   //查看数组元素
+    //*array_at(&a, 0) = 10;          //可如此法赋值
+       //查看数组元素
     int cnt = 0;
     while(scanf("%d", array_at(&a, cnt++)) != EOF)
         ;
-    
+    for(int i = 0; i < cnt - 1; i++)
+    {
+        printf("array[%d]=%d\n", i, *array_at(&a, i));
+    }
     array_free(&a);
     return 0; 
 }
