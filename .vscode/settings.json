@@ -38,7 +38,8 @@
     "random_array.h": "c",
     "rand_arr.h": "c",
     "time.h": "c",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "node.h": "c"
   },
   "C_Cpp.errorSquiggles": "Disabled"
 }
