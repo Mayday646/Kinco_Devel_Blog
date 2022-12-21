@@ -187,6 +187,46 @@ int main(void)
     return 0;
 }
 ```
+### 枚举 :enum
+```c
+
+Typedef enum workday  //此处的workday可以省略，或者改成其他，不会影响后面
+{
+    saturday,
+    sunday = 0,
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday
+} workday; //此处的workday为枚举型enum workday的别名，类似于int
+workday today, tomorrow; //此处的workday颜色对应，变量today和tomorrow的类型为枚举型workday，也即enum workday
+enum workday中的workday可以省略：
+typedef enum
+{
+    saturday,
+    sunday = 0,
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday
+} workday; //此处的workday为枚举型enum workday的别名
+workday today, tomorrow; //变量today和tomorrow的类型为枚举型workday，也即enum workday
+也可以用这种方式：
+typedef enum workday   //VC6.0和MDK编译均未通过
+{
+    saturday,
+    sunday = 0,
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday
+};
+workday today, tomorrow; //变量today和tomorrow的类型为枚举型workday，也即enum workday
+注意：同一个程序中不能定义同名的枚举类型，不同的枚举类型中也不能存在同名的命名常量。
+```
 ---
 
 <font size =3 color =red face ="幼圆">
