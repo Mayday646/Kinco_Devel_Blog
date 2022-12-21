@@ -26,6 +26,56 @@
         __LINE__ 这会包含当前行号，一个十进制常量。
 
         __STDC__ 当编译器以 ANSI 标准编译时，则定义为 1；判断该文件是不是标准 C 程序
++ 用来把参数转换成字符串: **#** 字符串化（stringizing）
+    + `#define P(A) printf("%s:%d\n",#A,A)`
+
+```c
+#define debug(…) printf(VA_ARGS)
+// 缺省号代表一个可以变化的参数表。使用保留名 VA_ARGS 把参数传递给宏。当宏的调用展开时，实际的参数就传递给 printf()。
+
+#define error_info(fmt, ...) printf("[PLC]:in [%s] [%s] at line [%d]\r\n"fmt, __FILE__, __FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define debug_info(fmt,...) printf(fmt,##__VA_ARGS__)
+#define MODULE_NAME "MY_LIBS"
+#define error_printf(fmt,...) printf("[ERROR]["MODULE_NAME"](%s|%d)"fmt,__func__,__LINE__,##__VA_ARGS__)
+
+```
++ 预处理器粘合剂： **##** 运算符
+  + 可以用于类函数宏的替换部分。
+  + 另外，还可以用于类对象宏的替换部分,这个运算符把两个语言符号组合成单个语言符号。
+```c
+#define XNAME(n) x##n
+#define PXN(n) printf("x"#n" = %d\n",x##n)
+int main(void)
+{
+    int XNAME(1)=12;//int x1=12;
+    PXN(1);//printf("x1 = %d\n", x1);
+    return 0;
+}
+输出结果：
+x1=12
+```
++ 可变参数宏 ···和__VA_ARGS__
+```c
+#define PR(...) printf(__VA_ARGS__)
+int main()
+{
+    int wt=1,sp=2;
+    PR("hello\n");
+    PR("weight = %d, shipping = %d",wt,sp);
+    return 0;
+}
+
+输出结果：
+hello
+weight = 1, shipping = 2
+注意：省略号只能代替最后面的宏参数
+#define W(x,...,y)错误！
+```
++ ##__VA_ARGS__这里的 **##** 有特殊作用
+  + 假如可变参数宏为空的时候，**##** 的作用就是让编译器忽略前面一个逗号，不然编译器会报错。
+```c
+#define debug(format, ...) fprintf (stderr, format, ## __VA_ARGS__)
+```
 
 + 带参数的宏`#define CUBE(x) ((x)*(x)*(x))` 容易运算时出错
     + 需要带括号"( )",整个值需要带括号,参数出现的地方带括号
