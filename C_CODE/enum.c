@@ -15,6 +15,7 @@
 	ER_INVALID,
 
 }E_ERROR_CODE;
+
 int main(int argc, char *argv[])
 {
     E_ERROR_CODE DATE= ER_INVALID;
