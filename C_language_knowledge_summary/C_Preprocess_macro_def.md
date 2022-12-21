@@ -133,3 +133,4 @@ int a = 1;           //定义变量a 并且赋值为 1
 + `extern int i` 变量声明(不能初始化)
 ---
 ***<div align =right>Date:2022/11/16</div>***
+***<div align =right>UpDate:22/12/21</div>***
