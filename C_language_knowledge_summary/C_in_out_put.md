@@ -44,12 +44,14 @@
     scanf("%*d%d", &num); // 跳过第一次输入的“整型”
 ```
 <div align =left>
-    <img src="https://cdn.jsdelivr.net/gh/Mayday646/Kinco_Devel_Blog/Default_Picture_Dir/scanf_type.jpg" alt="scanf_type" width="600"/>
+    <img src="https://gcore.jsdelivr.net/gh/Mayday646/Kinco_Devel_Blog/Default_Picture_Dir/scanf_type.jpg" alt="scanf_type" width="600"/>
 </div>
 
 + [...]
     + 例子: [.^]
-   ![scanf_GPS](https://cdn.jsdelivr.net/gh/Mayday646/Kinco_Devel_Blog/Default_Picture_Dir/scanf_GPS.jpg)
+    ![scanf_GPS](https://gcore.jsdelivr.net/gh/Mayday646/Kinco_Devel_Blog/Default_Picture_Dir/scanf_GPS.jpg)
+   <!--![scanf_GPS](https://cdn.jsdelivr.net/gh/Mayday646/Kinco_Devel_Blog/Default_Picture_Dir/scanf_GPS.jpg) -->
+   <!--gcore.jsdelivr.net-->
 
 ### `printf` 和 `scanf` 的返回值
 +  `printf`: ***<font color =blue>int</font>*** 类型,读入的项目数 `\n`  算一个字符,也计算入内 
